@@ -153,7 +153,7 @@ progress::-webkit-progress-value {
 }
 
 #run_progress::-webkit-progress-value {
-    background-color: #2bca68;
+    background-color: #FFA500;
 }
 
 #hp_value, #arm_value, #run_value {
