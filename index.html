@@ -3,7 +3,6 @@
 <head>
 	<meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="speed.css">
     <link rel="stylesheet" href="notify.css">
     <link rel="stylesheet" href="dialog.css">
     <link rel="stylesheet" href="spectate.css">
@@ -93,7 +92,7 @@
     </div>
 
 
-		  <div class="cefstudio-speedometer" v-if="isSpeedActive" v-cloak="">
+		  <div class="cefstudio-speedometer" style="display: none; v-if="isSpeedActive" v-cloak="">
             <div class="count-block">
                 <p>{{ vehicleSpeed }}</p>
                 <div class="gear-block">
@@ -133,41 +132,6 @@
                 <img class="vehicle-health-icon" src="img/gears-1.png">
                 <div class="vehicle-health">{{ vehicleHealth }} %</div>
             </div>
-        </div>
-    </div>
-
-	
-   <div id="speed-car" style="display: none;">
-        <img id="speed-back" src="img/speed_back.png" width="500px" alt="">
-        <div id="speed-text">100<div class="kmh">км/ч</div></div>
-
-        <div class="indicators">
-            <!-- <img src="img/speed/engine.png" alt=""> -->
-            <!-- <img style="filter: grayscale(1000%);" src="img/speed/engine.png" alt=""> -->
-            <div class="indication-container">
-                <img src="img/speed/health.png" alt="">
-                <div class="indicator-text" id="chealth">82 %</div>
-            </div>
-            <div class="indication-container" style="margin-left: 0.5vw;">
-                <img src="img/speed/fuel.png" alt="">
-                <div class="indicator-text" id="fuel">100 л</div>
-            </div>
-            <div class="indication-container" style="margin-left: 1.2vw;">
-                <img src="img/speed/icon.png" alt="">
-                <div class="indicator-text" id="icon-car"></div>
-            </div>            
-        </div>         
-        <div class="icon-key">
-            <img id="key" src="img/speed/key.png" alt="">
-        </div>            
-        <div class="icon-lights">
-            <img id="light" src="img/speed/lights.png" alt="">
-        </div>             
-        <div class="icon-lock">
-            <img id="lock" src="img/speed/lock.png" alt="">
-        </div>             
-        <div class="icon-engine">
-            <img id="engine" src="img/speed/engine.png" alt="">
         </div>
     </div>
     <div id="notify-center" style="display: none;">
