@@ -90,37 +90,46 @@
             <div class="capture-score" id="score-two">0</div>
         </div>        
     </div>
-    <div id="speed-car" style="display: none;">
-        <img id="speed-back" src="img/speed_back.png" width="500px" alt="">
-        <div id="speed-text">100<div class="kmh">км/ч</div></div>
-
-        <div class="indicators">
-            <!-- <img src="img/speed/engine.png" alt=""> -->
-            <!-- <img style="filter: grayscale(1000%);" src="img/speed/engine.png" alt=""> -->
-            <div class="indication-container">
-                <img src="img/speed/health.png" alt="">
-                <div class="indicator-text" id="chealth">82 %</div>
+    <div class="cefstudio-speedometer" v-if="isSpeedActive" v-cloak="">
+            <div class="count-block">
+                <p>{{ vehicleSpeed }}</p>
+                <div class="gear-block">
+                    <div class="gear" :class="{ active: vehicleGear === 'P' }">P</div>
+                    <div class="gear" :class="{ active: vehicleGear === 'D' }">D</div>
+                    <div class="gear" :class="{ active: vehicleGear === 'R' }">R</div>
+                </div>
             </div>
-            <div class="indication-container" style="margin-left: 0.5vw;">
-                <img src="img/speed/fuel.png" alt="">
-                <div class="indicator-text" id="fuel">100 л</div>
+            <img class="background" src="img/speed-bg-1.png">
+            <svg class="speed" width="33vh" height="40vh" viewbox="0 0 280 60" fill="none">
+                <path stroke-width="6" fill="none" d="M60.340,185.660 C18.553,143.874 18.553,76.126 60.340,34.340 C102.126,-7.447 169.874,-7.447 211.660,34.340 C253.446,76.126 253.446,143.874 211.660,185.660 "></path>
+                <path id="speed" stroke="#f23856" stroke-width="6" fill="none" d="M60.340,185.660 C18.553,143.874 18.553,76.126 60.340,34.340 C102.126,-7.447 169.874,-7.447 211.660,34.340 C253.446,76.126 253.446,143.874 211.660,185.660" style="stroke-dasharray: 624.295, 504.295; stroke-dashoffset: 624.295;"></path>
+            </svg>
+            <div class="icon-block">
+                <img v-if="isVehicleEngine" class="icon" src="img/speed/engine_on-1.png" style="width: 2.9vh; height: 1.9vh;">
+                <img v-else="" class="icon" src="img/speed/engine-1.png" style="width: 2.9vh; height: 1.9vh;">
+                <img v-if="isVehicleLights" class="icon" src="img/speed/lights_on-1.png" style="width: 2.5vh; height: 1.5vh; top: 0.3vh; left: 0.1vh;">
+                <img v-else="" class="icon" src="img/speed/lights-1.png" style="width: 2.5vh; height: 1.5vh; top: 0.3vh; left: 0.1vh;">
+                <img v-if="isVehicleDoors" class="icon" src="img/speed/lock_on-1.png" style="width: 2.5vh; height: 1.6vh; top: 0.15vh;">
+                <img v-else="" class="icon" src="img/speed/lock-1.png" style="width: 2.5vh; height: 1.6vh; top: 0.15vh;">
+                <img v-if="isVehicleKey" class="icon" src="img/speed/key_on-1.png" style="width: 2.5vh; height: 1.7vh; top: 0.1vh;">
+                <img v-else="" class="icon" src="img/speed/key-1.png" style="width: 2.5vh; height: 1.7vh; top: 0.1vh;">
             </div>
-            <div class="indication-container" style="margin-left: 1.2vw;">
-                <img src="img/speed/icon.png" alt="">
-                <div class="indicator-text" id="icon-car"></div>
-            </div>            
-        </div>         
-        <div class="icon-key">
-            <img id="key" src="img/speed/key.png" alt="">
-        </div>            
-        <div class="icon-lights">
-            <img id="light" src="img/speed/lights.png" alt="">
-        </div>             
-        <div class="icon-lock">
-            <img id="lock" src="img/speed/lock.png" alt="">
-        </div>             
-        <div class="icon-engine">
-            <img id="engine" src="img/speed/engine.png" alt="">
+            <svg class="progress-vehicle-fuel" viewbox="0 0 100 320" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(-13.5)">
+                <path d="M41.8301 312C17.8305 276.5 -4.2306 204.241 13.3311 134C24.832 88 51.8336 39 95.832 5" stroke="#141414cb" stroke-opacity="0.5" stroke-width="8"></path>
+                <path id="progress-vehicle-fuel" d="M41.8301 312C17.8305 276.5 -4.2306 204.241 13.3311 134C24.832 88 51.8336 39 95.832 5" stroke="#f23856" stroke-width="8" style="stroke-dasharray: 500; stroke-dashoffset: 500;"></path>
+            </svg>
+            <div class="vehicle-fuel-block">
+                <div class="vehicle-fuel">{{ vehicleFuel }} л</div>
+                <img class="vehicle-fuel-icon" src="img/fuel-1.svg">
+            </div>
+            <svg class="progress-vehicle-health" viewbox="0 0 100 320" fill="none" xmlns="http://www.w3.org/2000/svg" transform="scale(-1, 1) rotate(-13.5)">
+                <path d="M41.8301 312C17.8305 276.5 -4.2306 204.241 13.3311 134C24.832 88 51.8336 39 95.832 5" stroke="#141414cb" stroke-opacity="0.5" stroke-width="8"></path>
+                <path id="progress-vehicle-health" d="M41.8301 312C17.8305 276.5 -4.2306 204.241 13.3311 134C24.832 88 51.8336 39 95.832 5" stroke="#f23856" stroke-width="8" style="stroke-dasharray: 500; stroke-dashoffset: 500;"></path>
+            </svg>
+            <div class="vehicle-health-block">
+                <img class="vehicle-health-icon" src="img/gears-1.png">
+                <div class="vehicle-health">{{ vehicleHealth }} %</div>
+            </div>
         </div>
     </div>
     <div id="notify-center" style="display: none;">
